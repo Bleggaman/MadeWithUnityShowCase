@@ -11,20 +11,8 @@ using System.Web.UI.WebControls.WebParts;
 // This class was called _default
 public class UserWebRequest : System.Web.UI.Page 
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public static void MyFunction()
     {
-
-
-    }
-
-    protected void btnCallCSFunction_Click(object sender, EventArgs e)
-    {
-        MyFunction();
-    }
-
-    private void MyFunction()
-    {
-        //write your stuff here
-        Response.Write("Bleg");
+        Response.Write("Bleg FROM C#");
     }
 }
