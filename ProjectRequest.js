@@ -10,8 +10,7 @@ function ChangePage() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log("Bleg 2");
-            document.getElementById("demo").innerHTML =
-            this.responseText;
+            document.write(this.responseText);
        }
     };
     xhttp.open("GET", "Bleg.txt", true);
