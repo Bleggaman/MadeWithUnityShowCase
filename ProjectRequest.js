@@ -13,7 +13,7 @@ function ChangePage() {
             this.responseText;
        }
     };
-    xhttp.open("GET", "RequestPage.aspx", true);
+    xhttp.open("GET", "Bleg.txt", true);
     xhttp.send();
     console.log("Bleg 2");
 }
