@@ -1,7 +1,9 @@
-<!--<%@ Page Language="C#" AutoEventWireup = "true"  CodeFile = "WebForm2.aspx.cs"  Inherits = "NetAdmin.WebForm2"  %>-->
-<script language="C#" type="text/C#" runat="server">
-    private void Submit_onclick(object s, EventArgs e) {
-        
-        Response.Write("Bleg FROM THE OTHA SIDE");
-    }
-</script>
+<%@ Page Language="C#" %>
+<html>
+<body>
+    <form id="form1" runat="server">
+    <% for(int i = 0; i < 6; i++) %> 
+       <% { Response.Write("<br>" + i.ToString()); }%>
+    </form>
+</body>
+</html>
