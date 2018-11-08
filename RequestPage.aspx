@@ -3,7 +3,7 @@
     <head id="Head1" runat="server">
         <script language="C#" type="text/C#" runat="server">
             private void Submit_onclick(object s, EventArgs e) {
-                UserWebRequest.MyFunction();
+                
                 Response.Write("Bleg FROM THE OTHA SIDE");
             }
         </script>
