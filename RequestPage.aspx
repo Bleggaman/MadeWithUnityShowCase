@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup = "true"  CodeFile = "WebForm2.aspx.cs"  Inherits = "NetAdmin.WebForm2"  %>
+<!--<%@ Page Language="C#" AutoEventWireup = "true"  CodeFile = "WebForm2.aspx.cs"  Inherits = "NetAdmin.WebForm2"  %>-->
 <html>
     <head id="Head1" runat="server">
         <script language="C#" type="text/C#" runat="server">
