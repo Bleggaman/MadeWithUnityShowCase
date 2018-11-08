@@ -13,7 +13,7 @@ function ChangePage() {
             document.getElementById("Bleg").innerHTML = "<h2>" + this.responseText + "</h2>";
        }
     };
-    xhttp.open("GET", "RequestPage.cshtml", true);
+    xhttp.open("GET", "RequestProject.cshtml", true);
     xhttp.send();
     console.log("Bleg 3");
 }
