@@ -7,11 +7,7 @@
 /Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/MadeWithUnityShowCase.TagHelpers.input.cache
 /Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/MadeWithUnityShowCase.TagHelpers.output.cache
 /Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/MadeWithUnityShowCase.RazorCoreGenerate.cache
-/Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/Razor/Pages/About.g.cshtml.cs
-/Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/Razor/Pages/Contact.g.cshtml.cs
-/Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/Razor/Pages/Error.g.cshtml.cs
 /Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/Razor/Pages/Index.g.cshtml.cs
-/Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/Razor/Pages/Privacy.g.cshtml.cs
 /Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/Razor/Pages/Shared/_CookieConsentPartial.g.cshtml.cs
 /Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/Razor/Pages/Shared/_Layout.g.cshtml.cs
 /Users/britthenderson/Desktop/MadeWithUnityShowCase/MadeWithUnityShowCase/obj/Debug/netcoreapp2.1/Razor/Pages/Shared/_ValidationScriptsPartial.g.cshtml.cs
