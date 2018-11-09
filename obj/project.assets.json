@@ -3287,6 +3287,15 @@
           "lib/netcoreapp2.1/System.IO.Pipelines.dll": {}
         }
       },
+      "System.Json/4.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Json.dll": {}
+        }
+      },
       "System.Linq/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -8560,6 +8569,34 @@
         "version.txt"
       ]
     },
+    "System.Json/4.4.0": {
+      "sha512": "6gFz+D9omdstj6nPh6k0KMciHMi40fsBJ7Bsp7JP2oqN5fFWw6Kf2Ti3UEkTUtIuFDCJhFLqUXC9nEIm73EpYw==",
+      "type": "package",
+      "path": "system.json/4.4.0",
+      "files": [
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/Xamarinmac20/_._",
+        "lib/monoandroid10/_._",
+        "lib/monotouch10/_._",
+        "lib/netstandard1.0/System.Json.dll",
+        "lib/netstandard2.0/System.Json.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/Xamarinmac20/_._",
+        "ref/monoandroid10/_._",
+        "ref/monotouch10/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.json.4.4.0.nupkg.sha512",
+        "system.json.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Linq/4.3.0": {
       "sha512": "rkFwsbSyPOIvCvv+TOFhNxUNYVlokBbC/y5zWKikWymukNWoSdYvQM6+THWvjraENVcHncSozMTPpMf5aj/Evg==",
       "type": "package",
@@ -11497,7 +11534,8 @@
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
-      "Microsoft.NETCore.App >= 2.1.0"
+      "Microsoft.NETCore.App >= 2.1.0",
+      "System.Json >= 4.4.0"
     ]
   },
   "packageFolders": {
@@ -11554,6 +11592,10 @@
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
+          },
+          "System.Json": {
+            "target": "Package",
+            "version": "[4.4.0, )"
           }
         },
         "imports": [
