@@ -1,18 +1,18 @@
 using System;
-using System.Configuration;
-using System.Data;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-// This class was called _default
-public class UserWebRequest : System.Web.UI.Page 
+namespace MadeWithUnityShowCase.Pages
 {
-    public static void MyFunction()
+    public class RequestModel : PageModel
     {
-        Response.Write("Bleg FROM C#");
+        public string Message { get; set; }
+
+        public void OnGet()
+        {
+            Message = "C# SAYS BLEG :D";
+        }
     }
 }
