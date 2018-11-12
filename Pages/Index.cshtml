@@ -7,6 +7,44 @@
 
 
 <div class="row">
-    <h2>@Model.Message</h2>
+    <div>
+        <h1>@Model.Title</h1>
+        <h2>@Model.Studio</h2>
+        <img src = @Model.TitleImage>
+    </div>
 </div>
 
+<div>
+    <h1>Text</h1>
+    <pre>
+        @Model.Text
+    </pre>
+</div>
+
+<div>
+    <h1>Visuals</h1>
+    @for (int i = 0; i < @Model.Images.GetLength(0); i++)
+    {
+        @if (@Model.Images[i,3] == "yt-thumb embed-responsive-item")
+        {
+            continue;
+        }
+        <img src=@Model.Images[i,0] alt="@Model.Images[i,1]" title="@Model.Images[i,2]" class="@Model.Images[i,3]">
+    }
+</div>
+
+<div>   
+    <h1>Videos</h1>
+    @for (int i = 0; i < @Model.Images.GetLength(0); i++)
+    {
+        @if (@Model.Images[i,3] == "yt-thumb embed-responsive-item")
+        {
+            continue;
+        }
+        <img src=@Model.Images[i,0] alt="@Model.Images[i,1]" title="@Model.Images[i,2]" class="@Model.Images[i,3]">
+    }
+</div>
+
+<div>   
+    <h1>Links</h1>
+</div>
