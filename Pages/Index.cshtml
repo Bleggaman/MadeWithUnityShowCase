@@ -35,16 +35,42 @@
 
 <div>   
     <h1>Videos</h1>
-    @for (int i = 0; i < @Model.Images.GetLength(0); i++)
+    @for (int i = 0; i < @Model.Videos.GetLength(0); i++)
     {
-        @if (@Model.Images[i,3] == "yt-thumb embed-responsive-item")
+        @if(@Model.Videos[i,1] == "yt-video")
         {
-            continue;
+            <iframe src="https://www.youtube.com/watch?v=@Model.Videos[i,2]"type="video/mp4" 
+                poster="@Model.Videos[i,3]"
+                title="@Model.Videos[i,4]"
+                width="640"
+                height="360"
+                allowfullscreen>
+                <img src=@Model.Videos[i,3]>
+            </iframe>
+        } else if (@Model.Videos[i,1] == "vm-video")
+        {
+            
+            <iframe src="https://player.vimeo.com/video/@Model.Videos[i,2]?autoplay=1" 
+                type="video/mp4" 
+                poster="@Model.Videos[i,3]"
+                title="@Model.Videos[i,4]"
+                width="640"
+                height="360"
+                allowfullscreen>
+                <img src=@Model.Videos[i,3]>
+            </iframe>
+
         }
-        <img src=@Model.Images[i,0] alt="@Model.Images[i,1]" title="@Model.Images[i,2]" class="@Model.Images[i,3]">
     }
 </div>
 
 <div>   
     <h1>Links</h1>
+    @for (int i = 0; i < @Model.Links.GetLength(0); i++)
+    {
+        <a href="@Model.Links[i,0]">
+            @Model.Links[i,1]
+        </a>
+        <br>
+    }
 </div>

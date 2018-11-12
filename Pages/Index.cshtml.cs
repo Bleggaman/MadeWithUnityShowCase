@@ -23,9 +23,13 @@ namespace MadeWithUnityShowCase.Pages
         public string Studio { get; set; }
         public string TitleImage { get; set; }
         public string Text { get; set;}
+        // For every Image (first level) this holds the source, alt, title, and class (respectively) on the second level
         public string[,] Images { get; set; }
+        // For every Video (first level) this holds an id, a class, a data tag, a image overlay index,
+        //      and video text (respectively) on the second level
         public string[,] Videos { get; set; }
-        public string[,] Links { get; set; }
+        // For every Link (first level) this holds the source and inner text (respectively) on the second level
+        public string[,] Links { get; set; } 
 
         public void OnGet()
         {
@@ -104,19 +108,52 @@ namespace MadeWithUnityShowCase.Pages
                 currTextNode = currTextNode.NextSibling;
             }
 
-            // Extract all pictures
+            // Extract all pictures & mark any videos
+            List<int> videoIndeces = new List<int>();
             HtmlNodeCollection imageNodes = masterNode.SelectNodes("//img");
             Images = new string[imageNodes.Count - 2, 4];
             for (int i = 0; i < imageNodes.Count - 2; i++) {
                 Images[i,0] = ExtractImageSrc(imageNodes[i].OuterHtml);
-                Images[i,1] = ExtractImageAlt(imageNodes[i].OuterHtml);
-                Images[i,2] = ExtractImageTitle(imageNodes[i].OuterHtml);
-                Images[i,3] = ExtractImageClass(imageNodes[i].OuterHtml);
+                Images[i,1] = ExtractField(imageNodes[i].OuterHtml, "alt");
+                Images[i,2] = ExtractField(imageNodes[i].OuterHtml, "title");
+                Images[i,3] = ExtractField(imageNodes[i].OuterHtml, "class");
                 if (Images[i,3] == "yt-thumb embed-responsive-item") {
                     // Mark as video
+                    videoIndeces.Add(i);
                 }
             }
+
+            // Set up all videos
+            Videos = new string[videoIndeces.Count, 5];
+            for (int i = 0; i < videoIndeces.Count; i++) {
+                int imageIndex = videoIndeces[i];
+                Console.WriteLine("Sanity check: " + imageNodes[imageIndex].OuterHtml);
+                Console.WriteLine("Sanity check: " + imageNodes[imageIndex].ParentNode.OuterHtml);
+                var videoNode = imageNodes[imageIndex].ParentNode;
+                Console.WriteLine("Extracting video related to " + Images[imageIndex,0] + "::");
+                Videos[i, 0] = ExtractField(videoNode.OuterHtml, "id");
+                string updatedHTML = videoNode.OuterHtml.Substring(videoNode.OuterHtml.IndexOf("id="));
+                Console.WriteLine("\t" + ExtractField(updatedHTML, "class"));
+                Videos[i, 1] = ExtractField(updatedHTML, "class");
+                string dataField = "data-" + Videos[i, 1].Substring(0, 2);
+                Console.WriteLine("\t" + ExtractField(updatedHTML, dataField));
+                Videos[i, 2] = ExtractField(updatedHTML, dataField);
+                Console.WriteLine("\t" +  Videos[i, 2]);
+                Videos[i, 3] = Images[imageIndex,0];
+                Videos[i, 4] = videoNode.InnerText;
+            }
+
+            // Extract all Links
+            HtmlNodeCollection linkNodes = masterNode.SelectNodes("//a");
+            Links = new string[linkNodes.Count, 2];
+            for (int i = 0; i < linkNodes.Count; i++) {
+                Links[i, 0] = ExtractField(linkNodes[i].OuterHtml, "href");
+                Links[i, 1] = linkNodes[i].InnerText;
+            }
         }
+
+        /////////////
+        // Extractors
 
         // Extracts just the style for a background image of a divider
         private string ExtractBackgroundImage(string divTag) {
@@ -128,46 +165,24 @@ namespace MadeWithUnityShowCase.Pages
 
         // Extracts just the source of any image
         // If no source, returns empty string
-        private string ExtractImageSrc(string imageTag) {
-            if (!imageTag.Contains("src"))
+        private string ExtractImageSrc(string tag) {
+            if (!tag.Contains("src"))
                 return "";
-            int startPos= imageTag.IndexOf("src=\"") + 5,
-                endPos = startPos;
-            while (imageTag.ElementAt(endPos) != '\"') endPos++;
-            return "https://unity.com" + imageTag.Remove(endPos).Substring(startPos);
+            return "https://unity.com" + ExtractFromQuotations(tag, tag.IndexOf("src=\"") + 5);
         }
 
-        // Extracts just the alt of any image tag
-        // If no alt, returns empty string
-        private string ExtractImageAlt(string imageTag) {
-            if (!imageTag.Contains("alt"))
+        // Extracts just the href of any tag
+        // If no href, returns empty string
+        private string ExtractField(string tag, string field) {
+            if (!tag.Contains(field))
                 return "";
-            int startPos= imageTag.IndexOf("alt=\"") + 5,
-                endPos = startPos;
-            while (imageTag.ElementAt(endPos) != '\"') endPos++;
-            return imageTag.Remove(endPos).Substring(startPos);
+            return ExtractFromQuotations(tag, tag.IndexOf(field + "=\"") + field.Count() + 2);
         }
 
-        // Extracts just the title of any image tag
-        // If no title, returns empty string
-        private string ExtractImageTitle(string imageTag) {
-            if (!imageTag.Contains("title"))
-                return "";
-            int startPos= imageTag.IndexOf("title=\"") + 7,
-                endPos = startPos;
-            while (imageTag.ElementAt(endPos) != '\"') endPos++;
-            return imageTag.Remove(endPos).Substring(startPos);
-        }
-
-        // Extracts just the class of any image tag
-        // If no class, returns empty string
-        private string ExtractImageClass(string imageTag) {
-            if (!imageTag.Contains("class"))
-                return "";
-            int startPos= imageTag.IndexOf("class=\"") + 7,
-                endPos = startPos;
-            while (imageTag.ElementAt(endPos) != '\"') endPos++;
-            return imageTag.Remove(endPos).Substring(startPos);
+        private string ExtractFromQuotations(string str, int startIndex) {
+            int endIndex = startIndex;
+            while (str.ElementAt(endIndex) != '\"') endIndex++;
+            return str.Remove(endIndex).Substring(startIndex);
         }
     }
 }
