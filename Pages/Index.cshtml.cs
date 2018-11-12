@@ -69,8 +69,9 @@ namespace MadeWithUnityShowCase.Pages
                 unvisitedSites = keys;
             } 
             int selectedIndex = (new Random()).Next(0, unvisitedSites.Count);
-            string selectedSite = unvisitedSites[selectedIndex].Replace("\"", "");
+            string selectedSite = unvisitedSites[selectedIndex];
             sites[selectedSite] = 1;
+            selectedSite = selectedSite.Replace("\"", "");
             
             // Update Data file with the newly selected site
             string jsonResult = JsonConvert.SerializeObject(sites.ToArray());
@@ -78,7 +79,6 @@ namespace MadeWithUnityShowCase.Pages
             using (StreamWriter writer = new StreamWriter(dataFile, false)){ 
                 writer.Write(jsonResult);
             }
-            Message = jsonResult + " " + selectedSite;
             // Display properties of selected site
             //ParseSite(selectedSite).ConfigureAwait(true).GetAwaiter().GetResult();
             HttpClient client = new HttpClient();
@@ -127,18 +127,11 @@ namespace MadeWithUnityShowCase.Pages
             Videos = new string[videoIndeces.Count, 5];
             for (int i = 0; i < videoIndeces.Count; i++) {
                 int imageIndex = videoIndeces[i];
-                Console.WriteLine("Sanity check: " + imageNodes[imageIndex].OuterHtml);
-                Console.WriteLine("Sanity check: " + imageNodes[imageIndex].ParentNode.OuterHtml);
                 var videoNode = imageNodes[imageIndex].ParentNode;
-                Console.WriteLine("Extracting video related to " + Images[imageIndex,0] + "::");
-                Videos[i, 0] = ExtractField(videoNode.OuterHtml, "id");
                 string updatedHTML = videoNode.OuterHtml.Substring(videoNode.OuterHtml.IndexOf("id="));
-                Console.WriteLine("\t" + ExtractField(updatedHTML, "class"));
                 Videos[i, 1] = ExtractField(updatedHTML, "class");
                 string dataField = "data-" + Videos[i, 1].Substring(0, 2);
-                Console.WriteLine("\t" + ExtractField(updatedHTML, dataField));
                 Videos[i, 2] = ExtractField(updatedHTML, dataField);
-                Console.WriteLine("\t" +  Videos[i, 2]);
                 Videos[i, 3] = Images[imageIndex,0];
                 Videos[i, 4] = videoNode.InnerText;
             }

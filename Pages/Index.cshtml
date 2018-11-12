@@ -39,12 +39,13 @@
     {
         @if(@Model.Videos[i,1] == "yt-video")
         {
-            <iframe src="https://www.youtube.com/watch?v=@Model.Videos[i,2]"type="video/mp4" 
+            <iframe src="https://www.youtube.com/embed/@Model.Videos[i,2]?autoplay=1&modestbranding=1&showinfo=0&rel=0"type="video/mp4" 
                 poster="@Model.Videos[i,3]"
                 title="@Model.Videos[i,4]"
                 width="640"
                 height="360"
-                allowfullscreen>
+                allowfullscreen
+                frameborder="0">
                 <img src=@Model.Videos[i,3]>
             </iframe>
         } else if (@Model.Videos[i,1] == "vm-video")
@@ -56,7 +57,8 @@
                 title="@Model.Videos[i,4]"
                 width="640"
                 height="360"
-                allowfullscreen>
+                allowfullscreen
+                frameborder="0">
                 <img src=@Model.Videos[i,3]>
             </iframe>
 
